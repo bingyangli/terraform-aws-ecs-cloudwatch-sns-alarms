@@ -3,6 +3,7 @@ variable "name" {
   description = "Name (unique identifier for app or service)"
 }
 
+
 variable "namespace" {
   type        = "string"
   description = "Namespace (e.g. `cp` or `cloudposse`)"

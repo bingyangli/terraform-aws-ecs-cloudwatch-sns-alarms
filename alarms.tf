@@ -56,7 +56,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_high" {
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = "${var.cpu_utilization_high_evaluation_periods}"
   metric_name         = "CPUUtilization"
-  namespace           = "AWS/ECS"
+  namespace           = "AWS/EC2"
   period              = "${var.cpu_utilization_high_period}"
   statistic           = "Average"
   threshold           = "${local.thresholds["CPUUtilizationHighThreshold"]}"
@@ -64,7 +64,9 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_high" {
   alarm_actions       = ["${compact(var.cpu_utilization_high_alarm_actions)}"]
   ok_actions          = ["${compact(var.cpu_utilization_high_ok_actions)}"]
 
-  dimensions = "${local.dimensions_map[var.service_name == "" ? "cluster" : "service"]}"
+  dimensions = {
+    InstanceId = "i-0112773f9cf76e84a"
+  }
 }
 
 resource "aws_cloudwatch_metric_alarm" "cpu_utilization_low" {
@@ -73,7 +75,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_low" {
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "${var.cpu_utilization_low_evaluation_periods}"
   metric_name         = "CPUUtilization"
-  namespace           = "AWS/ECS"
+  namespace           = "AWS/EC2"
   period              = "${var.cpu_utilization_low_period}"
   statistic           = "Average"
   threshold           = "${local.thresholds["CPUUtilizationLowThreshold"]}"
@@ -81,7 +83,9 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_low" {
   alarm_actions       = ["${compact(var.cpu_utilization_low_alarm_actions)}"]
   ok_actions          = ["${compact(var.cpu_utilization_low_ok_actions)}"]
 
-  dimensions = "${local.dimensions_map[var.service_name == "" ? "cluster" : "service"]}"
+  dimensions = {
+    InstanceId = "i-0112773f9cf76e84a"
+  }
 }
 
 resource "aws_cloudwatch_metric_alarm" "memory_utilization_high" {
@@ -90,7 +94,7 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilization_high" {
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = "${var.memory_utilization_high_evaluation_periods}"
   metric_name         = "MemoryUtilization"
-  namespace           = "AWS/ECS"
+  namespace           = "AWS/EC2"
   period              = "${var.memory_utilization_high_period}"
   statistic           = "Average"
   threshold           = "${local.thresholds["MemoryUtilizationHighThreshold"]}"
@@ -98,7 +102,9 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilization_high" {
   alarm_actions       = ["${compact(var.memory_utilization_high_alarm_actions)}"]
   ok_actions          = ["${compact(var.memory_utilization_high_ok_actions)}"]
 
-  dimensions = "${local.dimensions_map[var.service_name == "" ? "cluster" : "service"]}"
+  dimensions = {
+    InstanceId = "i-0112773f9cf76e84a"
+  }
 }
 
 resource "aws_cloudwatch_metric_alarm" "memory_utilization_low" {
@@ -107,7 +113,7 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilization_low" {
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "${var.memory_utilization_low_evaluation_periods}"
   metric_name         = "MemoryUtilization"
-  namespace           = "AWS/ECS"
+  namespace           = "AWS/EC2"
   period              = "${var.memory_utilization_low_period}"
   statistic           = "Average"
   threshold           = "${local.thresholds["MemoryUtilizationLowThreshold"]}"
@@ -115,5 +121,7 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilization_low" {
   alarm_actions       = ["${compact(var.memory_utilization_low_alarm_actions)}"]
   ok_actions          = ["${compact(var.memory_utilization_low_ok_actions)}"]
 
-  dimensions = "${local.dimensions_map[var.service_name == "" ? "cluster" : "service"]}"
+  dimensions = {
+    InstanceId = "i-0112773f9cf76e84a"
+  }
 }
